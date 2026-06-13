@@ -1,0 +1,24 @@
+# 依赖
+node_modules/
+miniprogram_npm/
+
+# 系统
+.DS_Store
+Thumbs.db
+*.log
+
+# IDE
+.idea/
+.vscode/
+
+# Claude Code 本地配置(每个开发者环境不同)
+.claude/
+
+# 跟项目无关的其他文档
+Python爬虫学习指南.md
+
+# 微信小程序本地私有配置(含本地路径等)
+project.private.config.json
+
+# 构建产物
+dist/

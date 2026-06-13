@@ -1,0 +1,9 @@
+{
+  "name": "uploadProductImage",
+  "version": "1.0.0",
+  "description": "管理员上传商品图片到云存储,返回 FileID",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "^2.6.3"
+  }
+}

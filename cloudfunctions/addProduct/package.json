@@ -1,0 +1,9 @@
+{
+  "name": "addProduct",
+  "version": "1.0.0",
+  "description": "管理员添加商品,带 ADMIN_TOKEN 鉴权",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "^2.6.3"
+  }
+}

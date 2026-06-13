@@ -1,0 +1,42 @@
+<view class="page-container">
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{favorites.length === 0}}">
+    <view class="empty-avatar">💝</view>
+    <text class="empty-text">还没有收藏哦~</text>
+    <text class="empty-sub">去首页选点喜欢的吧！</text>
+    <navigator url="/pages/index/index" open-type="switchTab" class="go-btn">
+      去逛逛
+    </navigator>
+  </view>
+
+  <!-- 收藏列表 -->
+  <view class="fav-list" wx:if="{{favorites.length > 0}}">
+    <view class="section-title">
+      <text class="section-icon">💝</text>
+      <text>我的收藏 ({{favorites.length}})</text>
+    </view>
+
+    <view class="fav-item" wx:for="{{favorites}}" wx:key="id">
+      <view class="fav-avatar">{{kittyEmojis[item.id % kittyEmojis.length]}}</view>
+      <view class="fav-info">
+        <text class="fav-name">{{item.name}}</text>
+        <view class="fav-meta">
+          <view class="fav-stars">
+            <text class="star">★★★★★</text>
+            <text class="fav-rating">{{item.rating}}</text>
+          </view>
+          <text class="fav-sales">月售{{item.sales}}+</text>
+        </view>
+        <text class="fav-price">¥{{item.price}}</text>
+      </view>
+      <view class="fav-remove" data-id="{{item.id}}" bindtap="removeFavorite">
+        <text>✕</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 添加收藏按钮 -->
+  <view class="add-btn-wrap" wx:if="{{favorites.length > 0}}">
+    <view class="add-btn" bindtap="addFavoriteFromProducts">+ 添加收藏</view>
+  </view>
+</view>

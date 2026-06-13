@@ -1,0 +1,206 @@
+<wxs module="specUtil" src="../../utils/spec.wxs"></wxs>
+<view class="page-container">
+  <!-- 状态栏占位 -->
+  <view class="status-bar" style="height: {{statusBarHeight}}px;"></view>
+
+  <!-- 顶部轮播图 -->
+  <swiper class="banner-swiper" indicator-dots indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#FFFFFF" autoplay circular interval="4000">
+    <swiper-item>
+      <view class="banner-item banner-1">
+        <text class="banner-title">小梁宝贝的愿望</text>
+        <text class="banner-desc">每一杯都是用爱调制</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="banner-item banner-2">
+        <text class="banner-title">今日特惠</text>
+        <text class="banner-desc">新品尝鲜价 首杯减3元</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="banner-item banner-3">
+        <text class="banner-title">甜蜜时光</text>
+        <text class="banner-desc">和最爱的人一起分享</text>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 店铺信息栏 -->
+  <view class="shop-header">
+    <view class="shop-avatar">
+      <text class="avatar-cat">🐱</text>
+      <view class="vip-badge">VIP</view>
+    </view>
+    <view class="shop-info">
+      <view class="shop-name-row">
+        <text class="shop-name">{{shopInfo.name}}</text>
+        <text class="shop-desc">{{shopInfo.desc}}</text>
+      </view>
+      <view class="shop-stats">
+        <view class="stat-rating">
+          <text class="star-icon">⭐</text>
+          <text class="rating-val">{{shopInfo.rating}}</text>
+        </view>
+        <text class="stat-sales">销量 {{shopInfo.sales}}</text>
+      </view>
+    </view>
+    <view class="search-icon-btn" bindtap="focusSearch">
+      <text>🔍</text>
+    </view>
+  </view>
+
+  <!-- 搜索栏（展开时显示） -->
+  <view class="search-bar-wrap {{showSearch ? 'show' : ''}}">
+    <view class="search-bar">
+      <text class="search-icon">🔍</text>
+      <input
+        class="search-input"
+        placeholder="搜索商品"
+        placeholder-class="search-placeholder"
+        value="{{searchKey}}"
+        bindinput="onSearchInput"
+        confirm-type="search"
+        focus="{{showSearch}}"
+        bindblur="blurSearch"
+      />
+    </view>
+  </view>
+
+  <!-- 主体：左侧分类 + 右侧商品 -->
+  <view class="main-content">
+    <!-- 左侧分类导航 -->
+    <scroll-view class="category-sidebar" scroll-y scroll-into-view="cat-{{currentCategory}}" scroll-with-animation>
+      <view
+        class="category-item {{currentCategory === item.key ? 'active' : ''}}"
+        wx:for="{{categories}}"
+        wx:key="key"
+        id="cat-{{item.key}}"
+        data-key="{{item.key}}"
+        bindtap="switchCategory"
+      >
+        <text class="category-name">{{item.name}}</text>
+        <text class="category-count">{{item.count}}</text>
+        <view class="category-indicator" wx:if="{{currentCategory === item.key}}"></view>
+      </view>
+    </scroll-view>
+
+    <!-- 右侧商品列表 -->
+    <scroll-view class="product-scroll" scroll-y scroll-into-view="{{scrollToId}}" scroll-with-animation>
+      <!-- 分类标题 -->
+      <view class="product-section-title" id="section-{{currentCategory}}">
+        <text class="section-name">{{currentCategoryName}}({{filteredProducts.length}})</text>
+      </view>
+
+      <view class="product-item" wx:for="{{filteredProducts}}" wx:key="id">
+        <view class="kitty-avatar">
+          <image wx:if="{{item.avatar}}" class="avatar-image" src="{{item.avatar}}" mode="aspectFill"></image>
+          <text wx:else>{{kittyEmojis[item.id % kittyEmojis.length]}}</text>
+        </view>
+        <view class="product-info">
+          <text class="product-name">{{item.name}}</text>
+          <view class="product-rating">
+            <view class="stars">
+              <text class="star">★</text>
+              <text class="star">★</text>
+              <text class="star">★</text>
+              <text class="star">★</text>
+              <text class="star">★</text>
+            </view>
+            <text class="rating-text">{{item.rating}}</text>
+            <text class="product-sales">月售{{item.sales}}</text>
+          </view>
+          <view class="product-bottom">
+            <view class="price-tag">¥{{item.price}}</view>
+            <view class="spec-btn" data-product="{{item}}" bindtap="openSpecPopup">选规格</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="empty-tip" wx:if="{{filteredProducts.length === 0}}">
+        <text>😴 暂无商品~ 敬请期待！</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 购物车底栏 -->
+  <view class="cart-bar">
+    <view class="cart-left" bindtap="toggleCartPopup">
+      <view class="cart-icon-wrap">
+        <text class="cart-icon">🛒</text>
+        <view class="cart-badge" wx:if="{{cartCount > 0}}">{{cartCount}}</view>
+      </view>
+      <view class="cart-price" wx:if="{{cartCount > 0}}">
+        <text class="cart-total">¥{{cartTotal}}</text>
+      </view>
+      <text class="cart-empty-text" wx:else>未选购商品</text>
+    </view>
+    <view class="cart-checkout {{cartCount === 0 ? 'disabled' : ''}}" bindtap="checkout">
+      下单
+    </view>
+  </view>
+
+  <!-- 购物车详情弹窗 -->
+  <view class="cart-mask {{showCartPopup ? 'show' : ''}}" bindtap="closeCartPopup" wx:if="{{cart.length > 0}}"></view>
+  <view class="cart-popup {{showCartPopup ? 'show' : ''}}" wx:if="{{cart.length > 0}}">
+    <view class="cart-popup-header">
+      <text class="cart-popup-title">购物车</text>
+      <view class="cart-clear-btn" bindtap="clearCart">清空</view>
+    </view>
+    <scroll-view class="cart-popup-list" scroll-y>
+      <view class="cart-popup-item" wx:for="{{cart}}" wx:key="specKey">
+        <view class="cart-item-top">
+          <text class="cart-item-name">{{item.productName}}</text>
+          <text class="cart-item-price">¥{{item.price * item.quantity}}</text>
+        </view>
+        <view class="cart-item-bottom">
+          <view class="cart-item-specs">
+            <view class="cart-item-spec" wx:for="{{item.specs}}" wx:for-item="val" wx:for-index="key" wx:key="key">
+              {{val}}
+            </view>
+          </view>
+          <view class="cart-item-qty">
+            <view class="qty-btn" data-index="{{index}}" data-delta="{{-1}}" bindtap="changeQuantity">-</view>
+            <text class="qty-num">{{item.quantity}}</text>
+            <view class="qty-btn" data-index="{{index}}" data-delta="{{1}}" bindtap="changeQuantity">+</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 规格选择弹窗 -->
+  <view class="kitty-mask" wx:if="{{showSpecPopup}}" bindtap="closeSpecPopup">
+    <view class="spec-popup" catchtap="noop">
+      <view class="popup-header">
+        <text class="popup-emoji">🐱</text>
+        <text class="popup-title">{{currentProduct.name}}</text>
+        <text class="popup-price">¥{{currentProduct.price}}</text>
+        <view class="fav-btn {{isFavorited ? 'active' : ''}}" bindtap="toggleFavorite">
+          <text>{{isFavorited ? '❤️' : '🤍'}}</text>
+        </view>
+      </view>
+
+      <view class="spec-section" wx:for="{{currentProduct.specList}}" wx:key="name" wx:for-item="spec">
+        <text class="spec-label">{{spec.name}}</text>
+        <view class="spec-options">
+          <view
+            class="spec-option {{specUtil.isActive(selectedSpecs, spec.name, opt) ? 'active' : ''}}"
+            wx:for="{{spec.options}}"
+            wx:for-item="opt"
+            wx:key="*this"
+            data-name="{{spec.name}}"
+            data-value="{{opt}}"
+            catchtap="selectSpec"
+          >
+            {{opt}}
+          </view>
+        </view>
+      </view>
+
+      <view class="popup-actions">
+        <view class="kitty-btn-outline popup-cancel" bindtap="closeSpecPopup">取消</view>
+        <view class="kitty-btn popup-confirm" bindtap="addToCart">加入购物车</view>
+      </view>
+    </view>
+  </view>
+</view>

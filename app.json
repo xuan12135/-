@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/order/order",
+    "pages/turntable/turntable",
+    "pages/mine/mine",
+    "pages/favorites/favorites"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "小梁宝贝的愿望",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#F5F5F5"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#6A5ACD",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/tab-icons/order.png",
+        "selectedIconPath": "static/tab-icons/order-active.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "static/tab-icons/list.png",
+        "selectedIconPath": "static/tab-icons/list-active.png"
+      },
+      {
+        "pagePath": "pages/turntable/turntable",
+        "text": "转盘",
+        "iconPath": "static/tab-icons/wheel.png",
+        "selectedIconPath": "static/tab-icons/wheel-active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "static/tab-icons/user.png",
+        "selectedIconPath": "static/tab-icons/user-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

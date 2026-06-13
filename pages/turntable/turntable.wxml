@@ -1,0 +1,66 @@
+<view class="page-container">
+
+  <!-- Tab 切换 -->
+  <view class="tab-bar">
+    <view class="tab-item {{activeTab === 'eat' ? 'active' : ''}}" bindtap="switchTab" data-tab="eat">
+      <text class="tab-emoji">🍽️</text>
+      <text class="tab-name">吃什么</text>
+    </view>
+    <view class="tab-item {{activeTab === 'drink' ? 'active' : ''}}" bindtap="switchTab" data-tab="drink">
+      <text class="tab-emoji">🥤</text>
+      <text class="tab-name">喝什么</text>
+    </view>
+  </view>
+
+  <!-- 转盘 -->
+  <view class="wheel-area">
+    <view class="wheel-box" style="width: {{wheelSize}}px; height: {{wheelSize}}px;">
+      <!-- 指针(cover-view,强制覆盖 canvas)-->
+      <cover-view class="pointer {{spinning ? 'bouncing' : ''}}">
+        <cover-view class="pointer-arrow">▼</cover-view>
+      </cover-view>
+      <!-- canvas — 弹窗时隐藏 -->
+      <view class="spin-layer" style="{{showResultPopup ? 'display:none;' : ''}}">
+        <canvas
+          type="2d"
+          id="wheelCanvas"
+          class="wheel-canvas"
+          style="width: {{wheelSize}}px; height: {{wheelSize}}px;"
+        ></canvas>
+      </view>
+      <!-- canvas 截图 — 弹窗时显示 -->
+      <image
+        wx:if="{{showResultPopup && wheelImage}}"
+        class="wheel-snapshot"
+        src="{{wheelImage}}"
+        mode="aspectFit"
+        style="width: {{wheelSize}}px; height: {{wheelSize}}px;"
+      ></image>
+      <!-- 中心 GO 按钮 -->
+      <cover-view
+        class="go-btn {{spinning ? 'go-disabled' : ''}}"
+        bindtap="spin"
+        style="width: {{goSize}}px; height: {{goSize}}px; left: {{goLeft}}px; top: {{goTop}}px;"
+      >
+        <cover-view class="go-label">GO</cover-view>
+      </cover-view>
+    </view>
+
+    <view class="spin-btn {{spinning || loading ? 'disabled' : ''}}" bindtap="spin">
+      {{loading ? '加载中...' : (spinning ? '转动中...' : '🎡 转一下')}}
+    </view>
+  </view>
+</view>
+
+<!-- 结果弹窗 -->
+<view class="result-mask {{showResultPopup ? 'show' : ''}}" bindtap="closeResultPopup" wx:if="{{showResultPopup}}">
+  <view class="result-popup" catchtap="">
+    <view class="popup-deco">✨</view>
+    <view class="result-emoji">{{resultEmoji}}</view>
+    <view class="result-text">{{resultText}}</view>
+    <view class="result-actions">
+      <view class="btn-outline" bindtap="closeResultPopup">再转转</view>
+      <view class="btn-primary" bindtap="addResultToOrder">下单这个</view>
+    </view>
+  </view>
+</view>

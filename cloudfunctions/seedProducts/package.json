@@ -1,0 +1,9 @@
+{
+  "name": "seedProducts",
+  "version": "1.0.0",
+  "description": "一次性把 12 个默认商品初始化到云端(幂等)",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "^2.6.3"
+  }
+}

@@ -1,0 +1,136 @@
+/* 全局样式 - Hello Kitty 主题 */
+page {
+  background-color: #F5F5F5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: #333333;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+/* 商品项卡片 */
+.product-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.product-item:last-child {
+  border-bottom: none;
+}
+
+/* Kitty 头像 */
+.kitty-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFE4EC, #FFC0CB);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56rpx;
+  flex-shrink: 0;
+  border: 4rpx solid #FFFFFF;
+  box-shadow: 0 4rpx 12rpx rgba(255, 182, 193, 0.3);
+}
+
+/* 价格标签 - 紫色 */
+.price-tag {
+  background: rgba(106, 90, 205, 0.12);
+  color: #6A5ACD;
+  border-radius: 24rpx;
+  padding: 6rpx 16rpx;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+/* 星级评分 */
+.stars {
+  display: flex;
+  align-items: center;
+  gap: 2rpx;
+}
+
+.star {
+  color: #FFD700;
+  font-size: 22rpx;
+}
+
+.rating-text {
+  color: #FFD700;
+  font-size: 22rpx;
+  font-weight: bold;
+  margin-left: 4rpx;
+}
+
+/* 主按钮 */
+.kitty-btn {
+  background: linear-gradient(135deg, #9B7FD4, #6A5ACD);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 50rpx;
+  padding: 16rpx 40rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6rpx 16rpx rgba(106, 90, 205, 0.25);
+}
+
+.kitty-btn::after {
+  border: none;
+}
+
+.kitty-btn:active {
+  transform: scale(0.96);
+}
+
+/* 次要按钮 */
+.kitty-btn-outline {
+  background: #FFFFFF;
+  color: #6A5ACD;
+  border: 2rpx solid #6A5ACD;
+  border-radius: 50rpx;
+  padding: 14rpx 38rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kitty-btn-outline::after {
+  border: none;
+}
+
+/* 弹窗遮罩 */
+.kitty-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kitty-popup {
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 40rpx;
+  width: 600rpx;
+  max-width: 90%;
+  box-shadow: 0 16rpx 48rpx rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+/* 分割线 */
+.kitty-divider {
+  height: 2rpx;
+  background: linear-gradient(90deg, transparent, #E0E0E0, transparent);
+  margin: 20rpx 0;
+}

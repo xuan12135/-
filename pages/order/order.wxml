@@ -1,0 +1,56 @@
+<wxs src="../../utils/time.wxs" module="timeUtils" />
+<view class="page-container">
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{orders.length === 0}}">
+    <view class="empty-avatar">🐱</view>
+    <text class="empty-text">还没有订单哦~</text>
+    <text class="empty-sub">去首页选点好吃的吧！</text>
+    <navigator url="/pages/index/index" open-type="switchTab" class="go-btn">
+      去点单
+    </navigator>
+  </view>
+
+  <!-- 订单列表 -->
+  <view class="order-list" wx:if="{{orders.length > 0}}">
+    <view class="section-title">
+      <text class="section-icon">📋</text>
+      <text>我的订单</text>
+    </view>
+
+    <view class="order-card" wx:for="{{orders}}" wx:key="id">
+      <view class="order-top">
+        <view class="order-left">
+          <view class="order-avatar">
+            <text>🐱</text>
+          </view>
+          <view class="order-basic">
+            <text class="order-name">{{item.productName}}</text>
+            <text class="order-id">#{{item.id}}</text>
+          </view>
+        </view>
+        <view
+          class="order-status {{item.status}}"
+          data-id="{{item.id}}"
+          data-status="{{item.status}}"
+          bindtap="switchStatus"
+        >
+          {{statusTextMap[item.status]}}
+        </view>
+      </view>
+
+      <view class="order-specs">
+        <view class="spec-chip" wx:for="{{item.specs}}" wx:for-item="val" wx:for-index="key" wx:key="*this">
+          {{key}}: {{val}}
+        </view>
+      </view>
+
+      <view class="order-bottom">
+        <view class="order-price-wrap">
+          <text class="order-price">¥{{item.price}}</text>
+        </view>
+        <text class="order-time">{{timeUtils.formatTime(item.createTime)}}</text>
+        <view class="delete-btn" data-id="{{item.id}}" bindtap="deleteOrder">删除</view>
+      </view>
+    </view>
+  </view>
+</view>

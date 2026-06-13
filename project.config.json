@@ -1,0 +1,15 @@
+{
+  "compileType": "miniprogram",
+  "appid": "wxb5b3adf73260da14",
+  "projectname": "xiaoliang-wish",
+  "miniprogramRoot": "./",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true
+  },
+  "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
+}

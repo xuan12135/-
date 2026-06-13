@@ -1,0 +1,9 @@
+{
+  "name": "deleteProduct",
+  "version": "1.0.0",
+  "description": "管理员下架/恢复商品(软删除),带 ADMIN_TOKEN 鉴权",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "^2.6.3"
+  }
+}

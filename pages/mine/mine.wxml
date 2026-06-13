@@ -1,0 +1,74 @@
+<view class="page-container">
+  <!-- 状态栏占位 -->
+  <view class="status-bar" style="height: {{statusBarHeight}}px;"></view>
+  <!-- 头像区域 -->
+  <view class="profile-header">
+    <view class="avatar-wrap">
+      <view class="avatar">🐱</view>
+      <view class="vip-badge">VIP</view>
+    </view>
+    <text class="nickname">小梁宝贝</text>
+    <text class="nickname-sub">今天也要开开心心的呀~ ✨</text>
+  </view>
+
+  <!-- 积分卡片 -->
+  <view class="stats-card">
+    <view class="stats-row">
+      <view class="stat-item" bindtap="goToOrders">
+        <text class="stat-value">{{totalOrders}}</text>
+        <text class="stat-label">累计订单</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item" bindtap="goToFavorites">
+        <text class="stat-value">{{favorites.length}}</text>
+        <text class="stat-label">我的收藏</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 菜单列表 -->
+  <view class="menu-list">
+    <view class="menu-item" bindtap="goToFavorites">
+      <view class="menu-icon-wrap">💝</view>
+      <text class="menu-name">我的收藏</text>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <view class="menu-divider"></view>
+
+    <view class="menu-item" bindtap="clearAllOrders">
+      <view class="menu-icon-wrap">🗑️</view>
+      <text class="menu-name">清空所有订单</text>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <view class="menu-divider"></view>
+
+    <view class="menu-item" bindtap="openAbout">
+      <view class="menu-icon-wrap">🌸</view>
+      <text class="menu-name">关于本宝</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 版本号 -->
+  <view class="version-info">
+    <text>小梁宝贝的愿望 v{{version}}</text>
+  </view>
+
+  <!-- 关于弹窗 -->
+  <view class="kitty-mask" wx:if="{{showAboutPopup}}" bindtap="closeAbout">
+    <view class="about-popup" catchtap="">
+      <view class="about-avatar">🐱</view>
+      <text class="about-title">小梁宝贝的愿望</text>
+      <text class="about-desc">一款专属于小梁宝贝的点单小程序</text>
+      <view class="about-info">
+        <text>💝 用爱制作 · Hello Kitty 主题</text>
+        <text>🍰 点单 · 订单 · 转盘 · 收藏</text>
+        <text>✨ 愿每一天都甜甜的~</text>
+      </view>
+      <text class="about-version">v{{version}}</text>
+      <view class="kitty-btn about-close" bindtap="closeAbout">知道了~</view>
+    </view>
+  </view>
+</view>

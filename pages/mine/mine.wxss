@@ -1,0 +1,219 @@
+.page-container {
+  min-height: 100vh;
+  background: #F5F5F5;
+  padding-bottom: 140rpx;
+}
+
+/* 头像区域 */
+.profile-header {
+  background: linear-gradient(135deg, #FFE4EC 0%, #FFC0CB 30%, #FFB6C1 60%, #FFA0B4 100%);
+  padding: 56rpx 32rpx 48rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.profile-header::after {
+  content: '';
+  position: absolute;
+  bottom: -20rpx;
+  left: 0;
+  right: 0;
+  height: 40rpx;
+  background: #F5F5F5;
+  border-radius: 40rpx 40rpx 0 0;
+}
+
+.avatar-wrap {
+  position: relative;
+  margin-bottom: 16rpx;
+}
+
+.avatar {
+  width: 140rpx;
+  height: 140rpx;
+  background: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 72rpx;
+  box-shadow: 0 8rpx 24rpx rgba(106, 90, 205, 0.15);
+  border: 4rpx solid #FFFFFF;
+}
+
+.vip-badge {
+  position: absolute;
+  top: -4rpx;
+  left: -4rpx;
+  background: linear-gradient(135deg, #FF6B6B, #FF4757);
+  color: #FFFFFF;
+  font-size: 18rpx;
+  font-weight: bold;
+  padding: 2rpx 10rpx;
+  border-radius: 8rpx;
+}
+
+.nickname {
+  color: #333333;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.nickname-sub {
+  color: #666666;
+  font-size: 24rpx;
+  margin-top: 8rpx;
+}
+
+/* 积分卡片 */
+.stats-card {
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  margin: -8rpx 20rpx 0;
+  position: relative;
+  z-index: 2;
+  padding: 28rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-value {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #6A5ACD;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 4rpx;
+}
+
+.stat-divider {
+  width: 2rpx;
+  height: 60rpx;
+  background: #F0F0F0;
+}
+
+/* 菜单列表 */
+.menu-list {
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  margin: 16rpx 20rpx;
+  padding: 4rpx 0;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 32rpx;
+}
+
+.menu-icon-wrap {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+  width: 44rpx;
+  text-align: center;
+}
+
+.menu-name {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.menu-arrow {
+  font-size: 36rpx;
+  color: #CCCCCC;
+  font-weight: bold;
+}
+
+.menu-divider {
+  height: 1rpx;
+  background: #F5F5F5;
+  margin: 0 32rpx;
+}
+
+/* 版本号 */
+.version-info {
+  text-align: center;
+  padding: 40rpx 0;
+  color: #CCCCCC;
+  font-size: 24rpx;
+}
+
+/* 关于弹窗 */
+.about-popup {
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 48rpx 40rpx;
+  width: 560rpx;
+  text-align: center;
+  box-shadow: 0 16rpx 48rpx rgba(0, 0, 0, 0.15);
+}
+
+.about-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFE4EC, #FFC0CB);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56rpx;
+  margin: 0 auto 16rpx;
+  border: 3rpx solid #FFB6C1;
+}
+
+.about-title {
+  display: block;
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.about-desc {
+  display: block;
+  font-size: 26rpx;
+  color: #999999;
+  margin-top: 8rpx;
+}
+
+.about-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 24rpx 0;
+  gap: 10rpx;
+}
+
+.about-info text {
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.about-version {
+  display: block;
+  font-size: 22rpx;
+  color: #CCCCCC;
+  margin-bottom: 20rpx;
+}
+
+.about-close {
+  width: 300rpx;
+  margin: 0 auto;
+}

@@ -1,0 +1,9 @@
+{
+  "name": "getProducts",
+  "version": "1.0.0",
+  "description": "读取商品列表,公开可调,管理员可看已下架",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "^2.6.3"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "updateProduct",
+  "version": "1.0.0",
+  "description": "管理员编辑商品,带 ADMIN_TOKEN 鉴权,只更新提供的字段",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "^2.6.3"
+  }
+}

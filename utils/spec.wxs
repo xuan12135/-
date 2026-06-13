@@ -1,0 +1,6 @@
+module.exports = {
+  isActive: function(selected, name, value) {
+    if (!selected) return false
+    return selected[name] === value
+  }
+}
